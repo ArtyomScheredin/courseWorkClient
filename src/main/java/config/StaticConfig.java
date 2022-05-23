@@ -24,6 +24,6 @@ public class StaticConfig {
                     "deleteMark `id` - delete mark by id\n" +
                     "deleteWorstStudent - delete student with the worst mark\n" +
                     "deleteWithAvgMarkLowerThan `value` (i.e. 2) - delete all people with average lower than\n" +
-                    "addPerson `firstName` `lastName` `patronymic` `groupsId` `type` - add person\n" +
-                    "updatePerson `firstName` `lastName` `patronymic` `groupsId` `type` - update person\n";
+                    "addPerson `firstName` `lastName` `patronymic` `groupId` `type` - add person\n" +
+                    "updatePerson `firstName` `lastName` `patronymic` `groupId` `type` - update person\n";
 }

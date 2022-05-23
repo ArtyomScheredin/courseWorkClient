@@ -102,7 +102,7 @@ public class CommandExecutor {
         commandTable.put("help", (args) -> System.out.println(COMMAND_INFO));
         commandTable.put("groupList", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             sendRequestAndDisplayList("http://localhost:8080/mark/group/" + args[1] + "/list",
                     new ParameterizedTypeReference<List<Mark>>() {
@@ -115,7 +115,7 @@ public class CommandExecutor {
         });
         commandTable.put("subjectMarks", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             sendRequestAndDisplayList("http://localhost:8080/mark/subject/" + args[1] + "/list",
                     new ParameterizedTypeReference<List<Mark>>() {
@@ -131,7 +131,7 @@ public class CommandExecutor {
         });
         commandTable.put("studentMarks", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             sendRequestAndDisplayList("http://localhost:8080/mark/student/" + args[1] + "/list",
                     new ParameterizedTypeReference<List<Mark>>() {
@@ -139,7 +139,7 @@ public class CommandExecutor {
         });
         commandTable.put("studentAvg", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             sendRequestAndDisplayMap("http://localhost:8080/mark/student/" + args[1] + "/avg",
                     new ParameterizedTypeReference<Map<String, Double>>() {
@@ -152,7 +152,7 @@ public class CommandExecutor {
         });
         commandTable.put("personGeneralAvg", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             sendRequestAndDisplayList("http://localhost:8080/person/" + args[1] + "/avg",
                     new ParameterizedTypeReference<Set<Double>>() {
@@ -173,7 +173,7 @@ public class CommandExecutor {
         });
         commandTable.put("peopleWithMark", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             sendRequestAndDisplayList("http://localhost:8080/person/with-mark/" + args[1],
                     new ParameterizedTypeReference<List<Person>>() {
@@ -187,7 +187,7 @@ public class CommandExecutor {
                 }));
         commandTable.put("addMark", (args) -> {
             if (args.length < 5) {
-                return;
+                throw new ApiException();
             }
             HttpEntity<MarkDTO> request = new HttpEntity<>(new MarkDTO(1,
                     args[1],
@@ -202,7 +202,7 @@ public class CommandExecutor {
         });
         commandTable.put("updateMark", (args) -> {
             if (args.length < 5) {
-                return;
+                throw new ApiException();
             }
             HttpEntity<MarkDTO> request = new HttpEntity<>(new MarkDTO(1,
                     args[1],
@@ -221,7 +221,7 @@ public class CommandExecutor {
         });
         commandTable.put("deleteMark", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             HttpEntity<Void> request = new HttpEntity<>(null);
             ResponseEntity<Void> response = restTemplate
@@ -235,7 +235,7 @@ public class CommandExecutor {
         });
         commandTable.put("deleteWithAvgMarkLowerThan", (args) -> {
             if (args.length < 2) {
-                return;
+                throw new ApiException();
             }
             HttpEntity<Void> request = new HttpEntity<>(null);
             ResponseEntity<Void> response = restTemplate
@@ -259,8 +259,8 @@ public class CommandExecutor {
             }
         });
         commandTable.put("addPerson", (args) -> {
-            if (args.length < 7) {
-                return;
+            if (args.length < 6) {
+                throw new ApiException();
             }
             HttpEntity<PersonDTO> request = new HttpEntity<>(new PersonDTO(1L,
                     args[1],
@@ -275,8 +275,8 @@ public class CommandExecutor {
             }
         });
         commandTable.put("updatePerson", (args) -> {
-            if (args.length < 7) {
-                return;
+            if (args.length < 6) {
+                throw new ApiException();
             }
             HttpEntity<PersonDTO> request = new HttpEntity<>(new PersonDTO(1L,
                     args[1],

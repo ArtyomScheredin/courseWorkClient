@@ -49,7 +49,13 @@ public class MyApp {
             state = State.AUTHORIZED;
             return;
         }
-        state = executor.execute(command);
+        try {
+            state = executor.execute(command);
+        } catch (HttpClientErrorException e) {
+            System.err.println("Error" + e.getMessage());
+        } catch (ApiException e) {
+            System.out.println("Incorrect command");
+        }
     }
 
     private void authorize() throws IOException, JSONException {
